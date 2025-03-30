@@ -27,6 +27,7 @@ let [results, setResults] = useState (null);
 
   return (
     <div className="Dictionary">
+      <h4>What word do you want to look up?</h4>
       <form onSubmit={search}>
         <input type="Search" className="search" autofocus={true} onChange={handleKeywordChange} />
         <input type="Submit" value="Look Up" className="btn w-100 submit" readOnly/>
