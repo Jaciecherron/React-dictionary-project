@@ -11,7 +11,7 @@ export default function Result(props) {
           <h2>{props.results.word}</h2>
         <section>
           <h3>{props.results.partOfSpeech}</h3>
-          <Phonetics phonetic={props.results.phoentic} />
+          <Phonetics phonetic={props.phoentic} />
         </section>
         <section>
           <p>

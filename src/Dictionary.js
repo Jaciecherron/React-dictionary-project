@@ -6,13 +6,15 @@ import Results from "./Results"
 export default function Dictionary() {
 let [keyword, setKeyword] = useState ("");
 let [results, setResults] = useState (null);
+let [phonetic, setPhonetic] = useState (null);
 
   function handleKeywordChange(event) {
     setKeyword(event.target.value)
   }
 
   function handleResponse(response) {
-    setResults(response.data.meanings[0])
+    setResults(response.data.meanings[0]);
+    setPhonetic (response.data.phonetic);
   }
 
   function search(event) {
@@ -35,7 +37,7 @@ let [results, setResults] = useState (null);
       <div className="hint">
         Suggested words: Sunset, Car, Book...
       </div>
-      <Results results={results} />
+      <Results results={results} phonetic={phonetic} />
     </div>
   );
 }
