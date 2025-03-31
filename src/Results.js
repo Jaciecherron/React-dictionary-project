@@ -1,17 +1,18 @@
 import React from "react";
 import Synonyms from "./Synonyms";
-import Example from "./Example"
+import Example from "./Example";
 import Phonetics from "./Phonetics";
 import "./results.css";
 
 export default function Result(props) {
+  console.log(props);
   if (props.results) {
     return (
       <div className="results">
-          <h2>{props.results.word}</h2>
+        <h2>{props.results.word}</h2>
         <section>
           <h3>{props.results.partOfSpeech}</h3>
-          <Phonetics phonetic={props.phoentic} />
+          <Phonetics phonetic={props.phonetic} />
         </section>
         <section>
           <p>
@@ -27,6 +28,7 @@ export default function Result(props) {
         </section>
       </div>
     );
-} else {
-  return null;
-}}
+  } else {
+    return null;
+  }
+}

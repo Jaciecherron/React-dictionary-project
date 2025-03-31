@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import "./Dictionary.css"
+import "./Dictionary.css";
 import axios from "axios";
-import Results from "./Results"
+import Results from "./Results";
 
 export default function Dictionary() {
-let [keyword, setKeyword] = useState ("");
-let [results, setResults] = useState (null);
-let [phonetic, setPhonetic] = useState (null);
+  let [keyword, setKeyword] = useState("");
+  let [results, setResults] = useState(null);
+  let [phonetic, setPhonetic] = useState(null);
 
   function handleKeywordChange(event) {
-    setKeyword(event.target.value)
+    setKeyword(event.target.value);
   }
 
   function handleResponse(response) {
     setResults(response.data.meanings[0]);
-    setPhonetic (response.data.phonetic);
+    setPhonetic(response.data.phonetic);
   }
 
   function search(event) {
@@ -25,18 +25,24 @@ let [phonetic, setPhonetic] = useState (null);
     axios.get(apiURL).then(handleResponse);
   }
 
-  
-
   return (
     <div className="Dictionary">
       <h4>What word do you want to look up?</h4>
       <form onSubmit={search}>
-        <input type="Search" className="search" autofocus={true} onChange={handleKeywordChange} />
-        <input type="Submit" value="Look Up" className="btn w-100 submit" readOnly/>
+        <input
+          type="Search"
+          className="search"
+          autofocus={true}
+          onChange={handleKeywordChange}
+        />
+        <input
+          type="Submit"
+          value="Look Up"
+          className="btn w-100 submit"
+          readOnly
+        />
       </form>
-      <div className="hint">
-        Suggested words: Sunset, Car, Book...
-      </div>
+      <div className="hint">Suggested words: Sunset, Car, Book...</div>
       <Results results={results} phonetic={phonetic} />
     </div>
   );
