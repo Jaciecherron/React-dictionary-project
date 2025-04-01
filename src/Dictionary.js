@@ -2,19 +2,25 @@ import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
 import Results from "./Results";
+import Photos from "./Photos";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
   let [results, setResults] = useState(null);
   let [phonetic, setPhonetic] = useState(null);
+  let [photos, setPhotos] = useState(null);
 
   function handleKeywordChange(event) {
     setKeyword(event.target.value);
   }
 
-  function handleResponse(response) {
+  function handleDictionaryResponse(response) {
     setResults(response.data.meanings[0]);
     setPhonetic(response.data.phonetic);
+  }
+
+  function handleImageResponse(response) {
+    setPhotos(response.data.photos);
   }
 
   function search(event) {
@@ -22,7 +28,11 @@ export default function Dictionary() {
 
     let apiKey = "9f3o6449dc310bta33096fd85b205350";
     let apiURL = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
-    axios.get(apiURL).then(handleResponse);
+    axios.get(apiURL).then(handleDictionaryResponse);
+
+    let imageApiURL = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${apiKey}`;
+
+    axios.get(imageApiURL).then(handleImageResponse);
   }
 
   return (
@@ -44,6 +54,7 @@ export default function Dictionary() {
       </form>
       <div className="hint">Suggested words: Sunset, Car, Book...</div>
       <Results results={results} phonetic={phonetic} />
+      <Photos photos={photos} />
     </div>
   );
 }
