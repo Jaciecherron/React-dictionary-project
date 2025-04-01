@@ -16,7 +16,7 @@ header {
 }
 
 body {
-  background-color: #F5F1FE;
+  background-color: #F5F1FE!important;
 }
 
 .App {
