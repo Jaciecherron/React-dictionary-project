@@ -48,7 +48,7 @@ export default function Dictionary() {
         <input
           type="Submit"
           value="Look Up"
-          className="btn w-100 submit"
+          className="submit"
           readOnly
         />
       </form>
