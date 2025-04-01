@@ -42,7 +42,7 @@ export default function Dictionary() {
         <input
           type="Search"
           className="search"
-          autofocus={true}
+          autoFocus={true}
           onChange={handleKeywordChange}
         />
         <input
